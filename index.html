@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+
+
+<html>
+    <head>
+        <title>Redox Titration</title>
+        <link rel="stylesheet" href="main.css">
+        <link rel="icon" type="image/png" href="./assets/flask196.png">
+        <script src="app.js"></script>
+    </head>
+    <body>
+        <!-- Title Bar -->
+        <div class="title">
+            Oxidation-Reduction Titration Simulation
+        </div>
+        
+        <!-- Main Content -->
+        <div class="page">
+            <!-- Agent Selection Table -->
+            <table>
+                <tr>
+                    <th>Oxidation Agent</th>
+                    <th>Reduction Agent</th>
+                </tr>
+                <tr>
+                    <td><input type="radio" class="agent-selection" id="KMnO4" onclick="AgentClicked(this.id)">KMnO<sub>4</sub></td>
+                    <td>Fe<sup>2+</sup></td>
+                </tr>
+                <tr>
+                    <td><input type="radio" class="agent-selection" id="K2Cr2O7" onclick="AgentClicked(this.id)"/>K<sub>2</sub>Cr<sub>2</sub>O<sub>7</sub></td>
+                    <td>Sn<sup>2+</sup></td>
+                </tr>
+                <tr>
+                    <td><input type="radio" class="agent-selection" id="I2" onclick="AgentClicked(this.id)"/>I<sub>2</sub></td>
+                    <td>S<sub>2</sub>O<sub>3</sub><sup>2-</sup></td>
+                </tr>
+            </table>
+            <div>
+                <div class="button-container">
+                    <button class="reset-button" onclick="RepeatClicked()">Repeat</button>
+                    <button class="reset-button" onclick="ResetClicked()">Reset</button>
+                </div>
+                <p class="slider-text" id="oxidation-agent-molarity" style="margin-left: 5px;">Molarity of Oxidation Agent: 0</p>
+                <div class="button-container">
+                    <p class="slider-text" style="margin-left: 5px;">Calculate Molarity of Reducing Agent Post Titration: </p>
+                    <input type="text" placeholder="Enter Molarity" id="final-molarity-text">
+                    <!-- @* <div class="line-break"></div> *@ -->
+                    <button id="final-molarity-go" onclick="CheckMolarityCalculation()">Go</button>
+                    <h1 id="status-text" style="display: none;">Incorrect!</h1>
+                </div>
+            </div>
+        
+            <div class="titration-container">
+                <div class="titration-setup">
+                    <p class="slider-text bottom" id="flask-volume">Volume in Flask: 0mL</p>
+                    <div class="image-background" id="fill-color">
+                        <img src="./assets/titration-flask-empty.png" class="titration-flask" id="titration-setup-mask">
+                    </div>
+                </div>
+                <div class="slidebar-container">
+                    <p class="slider-text" id="total-volume">Total Volume Added: 0mL</p>
+                    <label id="slidebar-label" class="titration-label">Use the Slider to Select an Amount</label>
+                    <input type="range" min="0" max="50" step="0.5" id="slidebar" value="0" onchange="UpdateSliderText(this.value)">
+                    <p class="slider-text" id="slider-text">0mL</p>
+                    <button id="go-button" class="go-button" onclick="DispenseClicked()">Dispense</button>
+                    <button id="dropwise-button" class="go-button" onclick="DropClicked()">Dropwise</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
