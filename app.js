@@ -6,13 +6,19 @@ let volumeAdded = 0
 let flaskVolume = 0
 let currentGradientPercentage = [4.5, 4.5]
 
+propertiesSetter()
+
 function propertiesSetter() {
-    document.getElementById("oxidation-agent-molarity").innerText = "Molarity of Oxidation Agent: " + currentMolarity
-    document.getElementById("flask-volume").innerText = "Volume in Flask: " + flaskVolume.toFixed(2) + "mL"
-    document.getElementById("total-volume").innerText = "Total Volume Added: " + volumeAdded.toFixed(2) + "mL"
-    console.log(document.getElementById("fill-color").style.background)
-    document.getElementById("fill-color").style.background = "linear-gradient(to bottom,white " + currentGradientPercentage[0] + "%,#8cbbdd " + currentGradientPercentage[1] + "%,#8cbbdd 63%,white 37%)"
-    console.log(document.getElementById("fill-color").style.background)
+    try {
+        document.getElementById("oxidation-agent-molarity").innerText = "Molarity of Oxidation Agent: " + buretteMolarity
+        document.getElementById("flask-volume").innerText = "Volume in Flask: " + flaskVolume.toFixed(2) + "mL"
+        document.getElementById("total-volume").innerText = "Total Volume Added: " + volumeAdded.toFixed(2) + "mL"
+        // console.log(document.getElementById("fill-color").style.background)
+        document.getElementById("fill-color").style.background = "linear-gradient(to bottom,white " + currentGradientPercentage[0] + "%,#8cbbdd " + currentGradientPercentage[1] + "%,#8cbbdd 63%,white 37%)"
+        // console.log(document.getElementById("fill-color").style.background)
+    }catch (exception) {
+        console.log(exception)
+    }
 }
 
 function VolumeToPercent(volume) {
@@ -60,6 +66,8 @@ function AgentClicked(id) {
         currentMolarity = CalcCurrentMolarity(finalVolume, flaskMolarity, currentAgent).toFixed(4)
         currentGradientPercentage = [4.5,4.5]
         propertiesSetter()
+        document.getElementById("slidebar").value = 0
+        UpdateSliderText("0")
     }
 }
 
