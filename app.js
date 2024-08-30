@@ -79,8 +79,8 @@ function ResetClicked() {
 function RepeatClicked() {
     volumeAdded = 0
     flaskVolume = 25
+    currentGradientPercentage = [4.5, 4.5]
     propertiesSetter()
-    document.getElementById("fill-color").style.background = "linear-gradient(to bottom,white 4.5%,#8cbbdd 4.5%,#8cbbdd 63%,white 37%);"
     document.getElementById("status-text").style.display = "none"
 }
 
