@@ -58,6 +58,7 @@ function AgentClicked(id) {
         flaskMolarity = Math.random().toFixed(4)
         finalVolume = Math.random().toFixed(4)
         currentMolarity = CalcCurrentMolarity(finalVolume, flaskMolarity, currentAgent).toFixed(4)
+        currentGradientPercentage = [4.5,4.5]
         propertiesSetter()
     }
 }
